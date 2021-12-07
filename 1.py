@@ -1,18 +1,13 @@
-def inp(): #입력
-    global a,b
-    a = int(input("수를 입력하세요 아니면 히로빈이 당신의 집으로 찾아갈수도 있습니다"))
-    b = int(input("다시 수를 입력하세요 아니면 히로빈이 당신의 집으로 찾아갈수도 있습니다"))
+import turtle as t
 
-def clac():   #계산
-    global plus, multi
-    plus = a + b
-    multi = a * b
+t.shape("turtle")
 
-def outp():   #출력
-    print("합:%d"%plus)
-    print("곱:%d"%multi)
+for i in range(3):
+    t.fd(100)
+    t.lt(120)
 
+for i in range(4):
+    t.fd(100)
+    t.lt(90)
 
-inp()
-clac()
-outp()
+t.circle(50)
