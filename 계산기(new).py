@@ -4,14 +4,25 @@ from tkinter import ttk
 
 operation = "" #연산자 저장함수 (+, -, *, /)
 temp_number = 0 #이진갚 저장변수
+#결과가 저장된 상태인지 상태를 저장
+answer_trigger = False
 
 #숫자버튼 처리 함수
 def button_pressed(value):
+    global temp_number
+    global answer_trigger
     #만약 입력값이 AC라면
     if value == "AC":
         num_entry.delete(0, "end")
+        operation = ""
+        #trigger 초기화
+        answer_trigger = False
         print("AC pressed")
     else:       #그 외에 0부터 9까지 수
+        #triggrt 가 true 이면 entry를 초기화 후 새로 입력
+        if answer_trigger:
+                num_entry.delete(0, "end")
+                answer_trigger = False
         num_entry.insert("end", value)
         print(value, "pressed")
 #사칙연산 처리
@@ -28,11 +39,13 @@ def math_button_pressed(value):
 def equal_button_pressed():
     global operation
     global temp_number
+    global answer_trigger
+    
     if not (operation =="" and num_entry.get()==""):
         number = int(num_entry.get())
 
         if operation == "/":
-            solution = temp-number/number
+            solution = temp_number/number
         elif operation == "*":
             solution = temp_number*number
         elif operation == "+":
@@ -48,10 +61,11 @@ def equal_button_pressed():
         print(temp_number, operation, number, "=", solution)
         operation =""
         temp_number = 0
-        
+        #계산 완료 후 trigger변수를 true로 변경
+        answer_trigger = True
 root = Tk()
 root.title("Calculator")
-root.geometry("300x300")
+root.geometry("370x350")
 
 #텍스트창의 값을 저장할 변수
 entry_value = StringVar(root, value="")
