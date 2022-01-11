@@ -1,10 +1,13 @@
-import turtle as t
+def square(a):
+    c = a * a
+    return c
 
-n = 5
-t.shape("classic")
-t.color("skyblue")
-t.begin_fill()
-for x in range(n):
-    t.forward(50)
-    t.left(360/n)
-t.end_fill()
+s1 = 5
+print(square(s1))
+
+
+def triangle(a, h):
+    c = a * h / 2
+    return c
+
+print(triangle(3, 4))
